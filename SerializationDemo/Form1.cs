@@ -45,7 +45,12 @@ namespace SerializationDemo
         {
             try
             {
-
+                Department dept = new Department();
+                FileStream fs = new FileStream(@"D:\Dept.Json",FileMode.Open,FileAccess.Read);
+                dept = JsonSerializer.Deserialize<Department>(fs);
+                txtId.Text = dept.Id.ToString();
+                txtName.Text = dept.Name;
+                txtLocation.Text = dept.Location;
             }
             catch (Exception ex)
             {
