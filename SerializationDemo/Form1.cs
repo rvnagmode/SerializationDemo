@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Xml.Serialization;
 using System.Windows.Forms;
 
 namespace SerializationDemo
@@ -48,6 +49,44 @@ namespace SerializationDemo
                 Department dept = new Department();
                 FileStream fs = new FileStream(@"D:\Dept.Json",FileMode.Open,FileAccess.Read);
                 dept = JsonSerializer.Deserialize<Department>(fs);
+                txtId.Text = dept.Id.ToString();
+                txtName.Text = dept.Name;
+                txtLocation.Text = dept.Location;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnXmlWrite_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department dept = new Department();
+                dept.Id = Convert.ToInt32(txtId.Text);
+                dept.Name = txtName.Text;
+                dept.Location = txtLocation.Text;
+                FileStream fs = new FileStream(@"D:\DeptXml.xml", FileMode.Create, FileAccess.Write);
+                XmlSerializer xml = new XmlSerializer(typeof(Department));
+                xml.Serialize(fs, dept);
+                fs.Close();
+                MessageBox.Show("file added");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnXmlRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department dept = new Department();
+                FileStream fs = new FileStream(@"D:\DeptXml.xml", FileMode.Open, FileAccess.Read);
+                XmlSerializer xml = new XmlSerializer(typeof(Department));
+                dept = (Department)xml.Deserialize(fs);
                 txtId.Text = dept.Id.ToString();
                 txtName.Text = dept.Name;
                 txtLocation.Text = dept.Location;

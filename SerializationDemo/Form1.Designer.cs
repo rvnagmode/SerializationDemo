@@ -119,6 +119,7 @@
             this.btnXmlRead.TabIndex = 9;
             this.btnXmlRead.Text = "Xml Read";
             this.btnXmlRead.UseVisualStyleBackColor = true;
+            this.btnXmlRead.Click += new System.EventHandler(this.btnXmlRead_Click);
             // 
             // btnXmlWrite
             // 
@@ -128,6 +129,7 @@
             this.btnXmlWrite.TabIndex = 8;
             this.btnXmlWrite.Text = "Xml Write";
             this.btnXmlWrite.UseVisualStyleBackColor = true;
+            this.btnXmlWrite.Click += new System.EventHandler(this.btnXmlWrite_Click);
             // 
             // btnSOAPRead
             // 
